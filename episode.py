@@ -21,7 +21,6 @@ episode_containers = page_html.find_all('h3', itemprop = 'name')
 series_name = episode_containers[0].find("a", itemprop="url").text
 
 season_container = page_html.find_all("select", class_="current")[0]
-# print(season_container.find('option', selected=True))
 seasons = page_html.find("select", {"id":"bySeason"}).find("option",selected=True).text.strip()
 
 # Initializing the series that the loop will populate
@@ -45,8 +44,6 @@ for sn in range(1,int(seasons)+1):
             episode_number = episodes.meta['content']
             title = episodes.a['title']
             airdate = episodes.find('div', class_='airdate').text.strip()
-            # print(title)
-            # print(episodes.find('span', class_='ipl-rating-star__rating'))
             rating = episodes.find('span', class_='ipl-rating-star__rating')
             if rating is None:
                 rating = 0
